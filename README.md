@@ -74,6 +74,10 @@ We used several visualizations to understand the data and evaluate the model:
    git clone https://github.com/yourusername/telco-churn-prediction.git
    ```
 
+Colab Notebook : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/CRISP_DM__TelcoCustomer_Churn_Prediction.ipynb
+
+Medium Article Link: 
+
 ---
 # KDD -  Network Intrusion Detection Using the KDD Process on UNSW-NB15 Dataset
 
@@ -129,6 +133,10 @@ To run the project on your local machine, follow these steps:
 3. **Run the Jupyter Notebook**:
     Open `network_intrusion_detection.ipynb` in Google Colab or Jupyter and run all cells.
 
+Colab Notebook file : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/KDD.ipynb
+
+Medium Article Link: 
+
 ---
 
 # SEMMA Process -  Credit Card Fraud Detection
@@ -174,4 +182,6 @@ After training the model, we evaluate its performance using various metrics:
 ### Deployment
 After successfully training and assessing the model, the next step is deploying it. We save the trained model using the `pickle` library so that it can be loaded and used for predictions without retraining. Below is the code to save and deploy the model using Flask.
 
-Code : 
+Colab Notebook file : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/Semma.ipynb
+
+Medium Article Link: 

@@ -129,3 +129,49 @@ To run the project on your local machine, follow these steps:
 3. **Run the Jupyter Notebook**:
     Open `network_intrusion_detection.ipynb` in Google Colab or Jupyter and run all cells.
 
+---
+
+# SEMMA Process -  Credit Card Fraud Detection
+
+This repository demonstrates the application of the SEMMA (Sample, Explore, Modify, Model, Assess) methodology to build a credit card fraud detection system using the **Credit Card Fraud Detection dataset** from Kaggle.
+
+## Dataset
+The dataset used is the **Credit Card Fraud Detection** dataset, which can be downloaded from Kaggle [here](https://www.kaggle.com/mlg-ulb/creditcardfraud).
+
+- **Fraudulent Transactions**: Transactions classified as fraud (Class = 1)
+- **Non-Fraudulent Transactions**: Transactions classified as legitimate (Class = 0)
+
+## SEMMA Process
+
+### 1. Sample
+The first step in the SEMMA process is to sample the data. We sampled 100% of the dataset to ensure that the entire dataset is used for analysis. The dataset contains the following columns:
+
+- `Time`: The time of the transaction
+- `Amount`: The amount of the transaction
+- `Class`: The target variable (0 = non-fraudulent, 1 = fraudulent)
+
+### 2. Explore
+We performed Exploratory Data Analysis (EDA) to gain insights into the dataset, such as:
+
+- **Class distribution**: Visualization of fraudulent vs. non-fraudulent transactions.
+- **Correlation Analysis**: Checking correlations between features, which helps understand relationships and feature selection.
+
+### 3. Modify
+The dataset was preprocessed by scaling the `Amount` and `Time` features using `StandardScaler`. Feature scaling ensures that the machine learning algorithms, especially those relying on distances (like RandomForest), perform optimally. 
+
+Additionally, we dropped the target variable `Class` from the feature set (`X`) to ensure that the model doesn't have access to it during training.
+
+### 4. Model
+We used a **RandomForestClassifier** for modeling the data. Random forests are an ensemble learning method that builds multiple decision trees and merges them together to get a more accurate and stable prediction. The model was trained using the training data (80%) and tested on the testing data (20%).
+
+### 5. Assess
+After training the model, we evaluate its performance using various metrics:
+
+- **Confusion Matrix**: This table helps visualize the model's prediction performance by comparing the predicted values to the actual values.
+- **Classification Report**: This report includes precision, recall, F1-score, and accuracy for each class (fraud and non-fraud).
+- **ROC Curve and AUC Score**: The ROC curve shows the model's ability to distinguish between classes, and the AUC score summarizes the overall performance.
+
+### Deployment
+After successfully training and assessing the model, the next step is deploying it. We save the trained model using the `pickle` library so that it can be loaded and used for predictions without retraining. Below is the code to save and deploy the model using Flask.
+
+Code : 

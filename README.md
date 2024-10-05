@@ -75,4 +75,57 @@ We used several visualizations to understand the data and evaluate the model:
    ```
 
 ---
-# KDD - Telco Customer Churn Prediction
+# KDD -  Network Intrusion Detection Using the KDD Process on UNSW-NB15 Dataset
+
+## Project Overview
+This project aims to detect network intrusions by analyzing the UNSW-NB15 dataset. The dataset contains a mix of normal and malicious traffic, making it ideal for demonstrating classification techniques in a security-focused data mining project. The workflow follows the KDD process, from data selection to model deployment.
+
+## Dataset
+The **UNSW-NB15** dataset was created to address limitations in older network datasets and provides a more realistic representation of modern network traffic. It contains normal and attack behaviors, including nine different types of attacks such as DoS, backdoor, and worms.
+
+- **Dataset Link**: [UNSW-NB15 Dataset](https://www.unsw.adfa.edu.au/unsw-canberra-cyber/cybersecurity/ADFA-NB15-Datasets/)
+
+## KDD Process Steps
+### 1. Selection
+We selected the **UNSW-NB15** dataset, which includes over 2.5 million records of network traffic data. The dataset contains labeled instances of both normal and attack traffic. The task is to classify network traffic as either normal or an attack.
+
+### 2. Preprocessing
+- **Handling Missing Data**: We filled missing values using the column mean for numeric data.
+- **Encoding Categorical Features**: Columns like `protocol` were encoded into numerical values using label encoding.
+- **Standardization**: Numeric features were standardized using `StandardScaler` to ensure that the model treats features on a comparable scale.
+
+### 3. Transformation
+Feature engineering was performed to create new insights from the dataset:
+- **Data Flow Duration**: Created a new feature by subtracting `sbytes` (source bytes) from `dbytes` (destination bytes).
+- **Dropped Irrelevant Columns**: Removed IP addresses (`srcip`, `dstip`) as they don't contribute to traffic classification.
+
+### 4. Data Mining
+We implemented a **Random Forest Classifier** to identify malicious network traffic. The model was trained on 70% of the data, and the remaining 30% was used for testing.
+
+### 5. Evaluation
+The model was evaluated using several metrics:
+- **Accuracy**: 95%+ accuracy on test data.
+- **ROC-AUC Score**: Used to assess model performance across different classification thresholds.
+- **Confusion Matrix**: Visualized the trade-off between false positives and true negatives.
+
+### 6. Deployment
+The trained model was saved using `joblib` for future use. We deployed it via a **Flask API**, allowing real-time network traffic classification.
+
+## Installation
+
+To run the project on your local machine, follow these steps:
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/network-intrusion-detection.git
+    cd network-intrusion-detection
+    ```
+
+2. **Install the required dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the Jupyter Notebook**:
+    Open `network_intrusion_detection.ipynb` in Google Colab or Jupyter and run all cells.
+

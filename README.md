@@ -76,7 +76,7 @@ We used several visualizations to understand the data and evaluate the model:
 
 Colab Notebook : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/CRISP_DM__TelcoCustomer_Churn_Prediction.ipynb
 
-Medium Article Link: 
+Medium Article Link: https://medium.com/@manjunatha.inti/predicting-customer-churn-with-machine-learning-a-telco-case-study-7a7246d2d411
 
 ---
 # KDD -  Network Intrusion Detection Using the KDD Process on UNSW-NB15 Dataset
@@ -135,7 +135,7 @@ To run the project on your local machine, follow these steps:
 
 Colab Notebook file : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/KDD.ipynb
 
-Medium Article Link: 
+Medium Article Link: https://medium.com/@manjunatha.inti/building-a-kdd-driven-intrusion-detection-system-using-the-unsw-nb15-dataset-5540e60d099d
 
 ---
 
@@ -184,4 +184,4 @@ After successfully training and assessing the model, the next step is deploying 
 
 Colab Notebook file : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/Semma.ipynb
 
-Medium Article Link: 
+Medium Article Link: https://medium.com/@manjunatha.inti/building-a-credit-card-fraud-detection-system-using-the-semma-process-f896bea44057

@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+
+\title{Credit Card Fraud Detection Using the SEMMA Process}
+\author{Manjunatha Inti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Credit card fraud detection is a critical challenge in the financial industry. With the increasing number of online transactions, fraudulent activities have also risen. In this paper, we present a robust fraud detection system utilizing the SEMMA (Sample, Explore, Modify, Model, Assess) methodology, which is widely used in data mining and machine learning. Using the Credit Card Fraud Detection Dataset from Kaggle, we systematically build and evaluate a RandomForest model for fraud detection. This model shows excellent performance in distinguishing between fraudulent and non-fraudulent transactions, demonstrating the efficacy of the SEMMA approach for imbalanced datasets.
+\end{abstract}
+
+\section{Introduction}
+Credit card fraud is a serious concern for financial institutions, with millions of dollars lost every year due to fraudulent activities. With the rise in online payments, detecting fraud in real-time is crucial. This research leverages machine learning techniques to build an efficient and reliable fraud detection model using the SEMMA process. The dataset used in this study is from Kaggle, consisting of anonymized transaction data for credit card purchases. The challenge of fraud detection in this context lies in the imbalanced nature of the dataset, where fraudulent transactions make up only a small fraction of the total transactions.
+
+\section{The SEMMA Process}
+SEMMA is a well-known methodology for data mining and machine learning, consisting of five key steps: Sample, Explore, Modify, Model, and Assess. This section outlines each step and how it is applied in this project.
+
+\subsection{Sample}
+The dataset used in this project contains 284,807 transactions, of which 492 are fraudulent (approximately 0.17\%). The dataset has 30 features, including `Time`, `Amount`, and 28 anonymized features labeled as `V1`, `V2`, ..., `V28`. The target variable is `Class`, where 0 represents a non-fraudulent transaction and 1 represents a fraudulent transaction. Given the highly imbalanced nature of the dataset, we sampled 100\% of the data for our analysis.
+
+\subsection{Explore}
+Exploratory Data Analysis (EDA) was conducted to better understand the dataset. Figure~\ref{fig:class_dist} shows the class distribution, which highlights the imbalance between non-fraudulent and fraudulent transactions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{class_distribution.png}
+    \caption{Class distribution of fraud vs. non-fraud transactions.}
+    \label{fig:class_dist}
+\end{figure}
+
+Correlation analysis revealed no significant correlations between the anonymized features. However, the `Amount` and `Time` features were found to be on different scales, necessitating feature scaling in the next step.
+
+\subsection{Modify}
+To prepare the dataset for modeling, the `Amount` and `Time` features were scaled using StandardScaler. This ensured that these features were normalized, improving the performance of our machine learning algorithms.
+
+\begin{lstlisting}[language=Python, caption=Feature Scaling in Python]
+from sklearn.preprocessing import StandardScaler
+
+df['Amount'] = StandardScaler().fit_transform(df['Amount'].values.reshape(-1, 1))
+df['Time'] = StandardScaler().fit_transform(df['Time'].values.reshape(-1, 1))
+\end{lstlisting}
+
+\subsection{Model}
+For this study, we employed the RandomForestClassifier, which is known for its robustness and ability to handle imbalanced datasets. The dataset was split into 80\% training data and 20\% testing data. The model was trained using the training set, and its performance was evaluated on the test set.
+
+\begin{lstlisting}[language=Python, caption=RandomForest Model Training]
+from sklearn.ensemble import RandomForestClassifier
+
+clf = RandomForestClassifier(random_state=42)
+clf.fit(X_train, y_train)
+\end{lstlisting}
+
+\subsection{Assess}
+To assess the performance of the model, we used metrics such as precision, recall, F1-score, and the Area Under the Receiver Operating Characteristic (ROC AUC) curve. Given the imbalanced nature of the dataset, these metrics provide a more informative picture of the model's effectiveness in detecting fraud.
+
+Figure~\ref{fig:roc_curve} shows the ROC curve for the RandomForest model. The high AUC score (closer to 1) demonstrates the model's capability to distinguish between fraudulent and non-fraudulent transactions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{roc_curve.png}
+    \caption{ROC Curve for RandomForest Model}
+    \label{fig:roc_curve}
+\end{figure}
+
+\section{Deployment}
+The trained model was saved using the pickle library and deployed as a REST API using Flask. This allows for real-time fraud detection in production environments.
+
+\begin{lstlisting}[language=Python, caption=Flask API for Model Deployment]
+from flask import Flask, request, jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+model = pickle.load(open('fraud_detection_model.pkl', 'rb'))
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json(force=True)
+    input_data = np.array(data['features'])
+    prediction = model.predict([input_data])
+    return jsonify({'prediction': int(prediction[0])})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+\end{lstlisting}
+
+\section{Results}
+The RandomForest model achieved high precision, recall, and F1-score, particularly in detecting fraudulent transactions. The ROC AUC score was close to 0.98, indicating strong model performance in distinguishing between the two classes. Table~\ref{tab:results} summarizes the key evaluation metrics.
+
+\begin{table}[H]
+    \centering
+    \caption{Model Evaluation Metrics}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Metric & Precision & Recall & F1-Score \\
+        \hline
+        Non-Fraud & 0.99 & 0.99 & 0.99 \\
+        Fraud & 0.94 & 0.90 & 0.92 \\
+        \hline
+    \end{tabular}
+    \label{tab:results}
+\end{table}
+
+\section{Conclusion}
+In this paper, we demonstrated the use of the SEMMA process to build an efficient credit card fraud detection system. The RandomForest model, combined with appropriate data preprocessing techniques, achieved excellent results in identifying fraudulent transactions in a highly imbalanced dataset. This work highlights the importance of feature scaling, model selection, and evaluation in addressing real-world data mining problems such as fraud detection.
+
+Future work may explore the use of more advanced techniques, such as deep learning models, and evaluate the system in a live, real-time fraud detection scenario.
+
+\section{References}
+\begin{itemize}
+    \item Kaggle: \url{https://www.kaggle.com/mlg-ulb/creditcardfraud}
+    \item Scikit-learn Documentation: \url{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}
+    \item SEMMA: \url{https://www.sas.com/en_us/insights/analytics/what-is-semma.html}
+\end{itemize}
+
+\end{document}

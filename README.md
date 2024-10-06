@@ -78,6 +78,10 @@ Colab Notebook : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD
 
 Medium Article Link: https://medium.com/@manjunatha.inti/predicting-customer-churn-with-machine-learning-a-telco-case-study-7a7246d2d411
 
+Research paper : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/CRSIP_DM_paper.pdf
+
+latex format Code : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/CRISPDM_latex_format.tex
+
 ---
 # KDD -  Network Intrusion Detection Using the KDD Process on UNSW-NB15 Dataset
 
@@ -137,6 +141,10 @@ Colab Notebook file : https://github.com/intimanjunath/Mining-Methodologies-CRIS
 
 Medium Article Link: https://medium.com/@manjunatha.inti/building-a-kdd-driven-intrusion-detection-system-using-the-unsw-nb15-dataset-5540e60d099d
 
+Research paper : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/KDD_paper.pdf
+
+latex format Code : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/KDD_latex_format.tex
+
 ---
 
 # SEMMA Process -  Credit Card Fraud Detection
@@ -185,3 +193,7 @@ After successfully training and assessing the model, the next step is deploying 
 Colab Notebook file : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/Semma.ipynb
 
 Medium Article Link: https://medium.com/@manjunatha.inti/building-a-credit-card-fraud-detection-system-using-the-semma-process-f896bea44057
+
+Research paper : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/SEMMA_paper.pdf
+
+latex format Code : https://github.com/intimanjunath/Mining-Methodologies-CRISP-KDD-SEMMA/blob/main/SEMMA_latex_format.tex
